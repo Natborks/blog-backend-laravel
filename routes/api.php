@@ -13,12 +13,14 @@ use Illuminate\Http\Request;
 |
 */
 
-Route::middleware('auth:api')->get('/user', function (Request $request) {
-    return $request->user();
-});
+// Route::middleware('auth:api')->get('/user', function (Request $request) {
+//     return $request->user();
+// });
 
-Route::get('posts', 'PostController@index');
-Route::get('posts{post}', 'PostController@show');
-Route::post('posts/', 'PostController@create');
-Route::put('posts/{post}', 'PostController@update');
-Route::delete('posts/{posr}', 'PostController@delete');
+Route::group(['middleware' => 'cors'], function() {
+    Route::get('posts', 'PostsController@index');
+    Route::get('post/{post}', 'PostsController@show');
+    Route::post('posts/', 'PostsController@store');
+    Route::put('post/{post}', 'PostsController@update');
+    Route::delete('post/{posr}', 'PostsController@delete');
+});

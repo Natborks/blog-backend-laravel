@@ -9,7 +9,15 @@ class PostsController extends Controller
 {
     //
     public function index() {
-        return Post::all();
+        $posts = Post::all();
+
+        return view('Posts/index', compact('posts'));
+        //return response()->json($posts, 200);
+          
+    }
+
+    public function create() {
+        return view('Posts/new');
     }
 
     public function show(Post $post) {
@@ -26,12 +34,12 @@ class PostsController extends Controller
         
         $post->update($request->all());
         
-        return $response()->json($post, 200);
+        return response()->json($post, 200);
     }
 
     public function delete(Request $request, Post $post) {
         $post->delete();
         
-        return $response()->json(null, 204);
+        return response()->json(null, 204);
     }
 }

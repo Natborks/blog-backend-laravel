@@ -14,3 +14,13 @@
 Route::get('/', function () {
     return view('welcome');
 });
+
+Route::get('/home', 'StaticPages@home');
+
+//Blog routes
+Route::get('/blog', 'PostsController@index');
+Route::get('posts/new', 'PostsController@create');
+Route::get('post/{post}', 'PostsController@show');
+Route::post('posts/', 'PostsController@store');
+Route::put('post/{post}', 'PostsController@update');
+Route::delete('post/{posr}', 'PostsController@delete');
